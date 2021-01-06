@@ -1,0 +1,57 @@
+# Sequencing platform
+SEQUENCING_PLATFORM: "Illumina"
+
+# Path to reference fasta file
+REFERENCE: ""
+
+# Path to VEP cache
+VEP_CACHE: ""
+
+# Path to blacklisted regions
+BLACKLIST: ""
+
+# Path to samples file
+SAMPLE_SHEET: "sample_sheet.tsv"
+
+# Path to fastq files
+READS: "reads/raw"
+
+# Path to the trimmed fastq files
+TRIMMED: "reads/trimmed"
+
+# Path to the fastq files. Remember to create it with the setup file!
+FASTQC: "reads/quality"
+
+# Path to alignment
+ALIGNMENT: "alignment"
+
+# Path to alignment metrics
+ALIGNMENT_QUAL: "alignment/quality"
+
+# Path to filtered alignment
+FILTERED: "alignment/filtered"
+
+# Path to variants
+VARIANTS: "variants"
+
+# Path to filtered variants
+FILTERED_VARIANTS: "variants_filtered"
+
+# Path to annotated variants
+ANNOTATED_VARIANTS: "variants_annotated"
+
+# Path to all log files
+LOGS: "logs/"
+
+# Conda enviorenments
+## bwa, samtools, picard, bedtools
+CONDA_ALIGNMENT: "envs/alignment.yml"
+
+## environment with trim_galore, fastqc and multiqc
+CONDA_QUALITY: "envs/quality_check.yml"
+
+## mutect2 conda env
+CONDA_MUTECT2: "envs/mutect2.yml"
+
+## vep conda env
+CONDA_VEP: "envs/vep.yml"
