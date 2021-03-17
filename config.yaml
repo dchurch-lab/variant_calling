@@ -35,10 +35,10 @@ FILTERED: "alignment/filtered"
 VARIANTS: "variants"
 
 # Path to filtered variants
-FILTERED_VARIANTS: "variants_filtered"
+FILTERED_VARIANTS: "variants/filtered"
 
 # Path to annotated variants
-ANNOTATED_VARIANTS: "variants_annotated"
+ANNOTATED_VARIANTS: "variants/annotated"
 
 # Path to all log files
 LOGS: "logs/"
