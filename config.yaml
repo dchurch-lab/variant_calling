@@ -4,8 +4,17 @@ SEQUENCING_PLATFORM: "Illumina"
 # Path to reference fasta file
 REFERENCE: ""
 
+# MUTECT2 files
+MUTECT2_GERMLINE: ""
+MUTECT2_PON: ""
+
 # Path to VEP cache
 VEP_CACHE: ""
+
+# VEP parameters
+VEP_VERSION: "103"
+VEP_ASSEMBLY: "GRCh38"
+VEP_SPECIES: "homo_sapiens"
 
 # Path to blacklisted regions
 BLACKLIST: ""
@@ -43,15 +52,15 @@ ANNOTATED_VARIANTS: "variants/annotated"
 # Path to all log files
 LOGS: "logs/"
 
-# Conda enviorenments
+# Conda environments
 ## bwa, samtools, picard, bedtools
-CONDA_ALIGNMENT: "envs/alignment.yml"
+CONDA_ALIGNMENT: "utils/envs/alignment.yml"
 
 ## environment with trim_galore, fastqc and multiqc
-CONDA_QUALITY: "envs/quality_check.yml"
+CONDA_QUALITY: "utils/envs/quality_check.yml"
 
 ## mutect2 conda env
-CONDA_MUTECT2: "envs/mutect2.yml"
+CONDA_MUTECT2: "utils/envs/mutect2.yml"
 
 ## vep conda env
-CONDA_VEP: "envs/vep.yml"
+CONDA_VEP: "utils/envs/vep.yml"

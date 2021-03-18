@@ -1,4 +1,4 @@
-rule alignment:
+rule align:
     input:
         ref = config['REFERENCE'],
         forw = os.path.join(config['TRIMMED'], '{sample}_1_val_1.fq.gz'),
@@ -23,7 +23,7 @@ rule alignment:
         samtools = os.path.join(config['LOGS'],
                                 'samtools', 'sort_{sample}.log')
     conda:
-        config['CONDA_ALIGNMENT']
+        '../' + config['CONDA_ALIGNMENT']
     message:
         '\n######################### Mapping ##########################\n'
         'Running bwa_mem follow by sorting to produce:\n'
@@ -59,7 +59,7 @@ rule build_index:
     log:
         os.path.join(config["LOGS"], 'indexing.log')
     conda:
-        config['CONDA_ALIGNMENT']
+        '../' + config['CONDA_ALIGNMENT']
     shell:
         'bwa index -a bwtsw {input} 2> {log}'
 
@@ -86,7 +86,7 @@ rule mark_duplicates:
     log:
         os.path.join(config['LOGS'], 'MarkDuplicates', '{sample}.log')
     conda:
-        config['CONDA_ALIGNMENT']
+        '../' + config['CONDA_ALIGNMENT']
     shell:
         'picard -Xmx{resources.mem_mb}m -Xms{resources.mem_mb}m MarkDuplicates'
         ' I={input} O={output.bam} ASSUME_SORTED=true'
@@ -95,7 +95,7 @@ rule mark_duplicates:
         ' samtools index {output.bam};'
         ' samtools flagstat {output.bam} > {output.flagstat_metrics}'
 
-rule filter:
+rule filter_alignment:
     """Clean up alignments
     Flags to filter out (-F):
       read unmapped (0x4 = 4)
@@ -122,7 +122,7 @@ rule filter:
     threads:
         8
     conda:
-        config['CONDA_ALIGNMENT']
+        '../' + config['CONDA_ALIGNMENT']
     message:
         '\n######################### Filtering ########################\n'
         'Filtering alignment followed by indexing\n'

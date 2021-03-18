@@ -1,4 +1,4 @@
-rule fastqc:
+rule fast_qc_reads:
     input:
         os.path.join(config['READS'], '{sample}_1.fastq.gz'),
         os.path.join(config['READS'], '{sample}_2.fastq.gz')
@@ -10,11 +10,12 @@ rule fastqc:
     log:
         os.path.join(config["LOGS"], 'fastqc', '{sample}.log')
     conda:
-        config['CONDA_QUALITY']
+        '../' + config['CONDA_QUALITY']
     shell:
-        'fastqc {input} -o {params.outdir} &> {log}'
+        'if [ ! -d {params.outdir} ]; then mkdir {params.outdir}; fi;'
+        ' fastqc {input} -o {params.outdir} &> {log}'
 
-rule trimming:
+rule trimm_reads:
     input:
         os.path.join(config['READS'], '{sample}_1.fastq.gz'),
         os.path.join(config['READS'], '{sample}_2.fastq.gz')
@@ -31,7 +32,7 @@ rule trimming:
     log:
         os.path.join(config["LOGS"], 'trim_galore', '{sample}.log')
     conda:
-        config['CONDA_QUALITY']
+        '../' + config['CONDA_QUALITY']
     message:
         '\n######################### Trimming #########################\n'
         'Running trim_galore on:\n'

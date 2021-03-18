@@ -3,3 +3,4 @@ channels:
 dependencies:
   - ensembl-vep=103
   - perl-bioperl
+  - perl-dbi

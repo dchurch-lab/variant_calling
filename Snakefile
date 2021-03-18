@@ -1,8 +1,8 @@
 """
-Author: Katarzyna Kedzierska
-Affiliation: WCHG, Unieversity of Oxford
-Aim: A simple Snakemake workflow for processing WES/WGS data.
-Date: February 2020
+Author: Kasia Kedzierska
+Affiliation: WHG, Unieversity of Oxford
+Aim: A simple Snakemake workflow for variant calling from single sample.
+Date: February 2020 -
 Run: snakemake --use-conda -j NUM_OF_THREADS
 """
 
@@ -12,6 +12,9 @@ Run: snakemake --use-conda -j NUM_OF_THREADS
 # BUG: 'set +u'   in variants_annotated to avoid:
 #      bash: THEME_SHOW_CLOCK: unbound variable
 #      bash: RBFU_RUBY_VERSION: unbound variable
+
+# had to add '../' to conda env files in smk files
+# asthe path to conda envs is interpretted relative to file
 
 from glob import glob
 import re
@@ -40,7 +43,7 @@ rule all:
         "multiqc_report.html"
 
     message:
-        '\n#################### WES/WGS pipeline #####################\n'
+        '\n################# Variant calling pipeline #################\n'
         'Running all necessary rules to produce complete output.\n'
         '############################################################'
 
@@ -64,6 +67,7 @@ rule multiqc:
         '############################################################'
     shell:
         'multiqc --force . --ignore .snakemake/ &> {log}'
+
 
 include: "utils/align.smk"
 include: "utils/process_reads.smk"
