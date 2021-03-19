@@ -2,6 +2,9 @@
 
 This directory hosts the pipeline for WES.
 
+[![DOI](https://zenodo.org/badge/327455301.svg)](https://zenodo.org/badge/latestdoi/327455301)
+
+
 ## Steps of the pipeline
 
 ![Outline for a pipeline](dag.png)
